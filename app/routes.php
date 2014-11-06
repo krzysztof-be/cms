@@ -115,10 +115,6 @@ App::error(function( Symfony\Component\HttpKernel\Exception\NotFoundHttpExceptio
 	return Redirect::to('404');
 });
 
-App::error(function( \Exception $e)
-{
-	return Redirect::to('500');
-});
 
 Route::get('install', 'App\Http\Controllers\InstallController@install');
 Route::post('install', 'App\Http\Controllers\InstallController@postInstall');

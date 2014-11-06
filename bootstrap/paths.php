@@ -1,5 +1,7 @@
 <?php
 
+if(!defined('APP_NAME')) define('APP_NAME', 'public');
+
 return array(
 
 	/*
@@ -26,7 +28,7 @@ return array(
 	|
 	*/
 
-	'public' => __DIR__.'/../public',
+	'public' => __DIR__.'/../' . APP_NAME,
 
 	/*
 	|--------------------------------------------------------------------------

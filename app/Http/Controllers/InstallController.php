@@ -96,6 +96,8 @@ class InstallController extends Controller {
 
 		} catch(\Exception $e) {
 
+			dd($e->getMessage());
+
 			\Flash::error('Wystąpił błąd podczas instalacji. Skontaktuj się z administratorem.');
 
 			return \Redirect::back();
