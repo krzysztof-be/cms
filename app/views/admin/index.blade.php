@@ -36,35 +36,51 @@
 
         	<ul class="list-unstyled">
 
-        		<li>
-        			<h4>{{ tr('admin.blog') }}</h4>
-        			<p class="text-muted">{!! tr('admin.blog_desc') !!}</p>
-        		</li>
+                @foreach($modules as $module)
 
-        		<li>
-        			<h4>{{ tr('admin.gallery') }}</h4>
-        			<p class="text-muted">{!! tr('admin.gallery_desc') !!}</p>
-        		</li>
+                    <li>
+                        <h4 style="line-height: 32px;">
 
-        		<li>
-        			<h4>{{ tr('admin.info') }}</h4>
-        			<p class="text-muted">{!! tr('admin.info_desc') !!}</p>
-        		</li>
+                            {{ tr('admin.' . $module->slug) }}
 
-        		<li>
-        			<h4>{{ tr('admin.menu') }}</h4>
-        			<p class="text-muted">{!! tr('admin.menu_desc') !!}</p>
-        		</li>
+                            @if(in_array($module->slug, [ 'menu', 'info', 'page']))
 
-        		<li>
-        			<h4>{{ tr('admin.page') }}</h4>
-        			<p class="text-muted">{!! tr('admin.pages_desc') !!}</p>
-        		</li>
 
-        		<li>
-        			<h4>{{ tr('admin.portfolio') }}</h4>
-        			<p class="text-muted">{!! tr('admin.portfolio_desc') !!}</p>
-        		</li>
+                            <button class="btn btn-success pull-left btn-sm" style="margin-right: 10px;">
+
+                                Zawsze włączony
+
+                            </button>
+
+                            @else
+
+                                @if($module->status == 'enabled')
+
+                                <a href="{{ url('admin/turnoff/' . $module->slug) }}" class="btn btn-primary pull-left btn-sm" style="margin-right: 10px;">
+
+                                    Włączony
+
+                                </a>
+
+                                @else
+
+                                <a href="{{ url('admin/turnon/' . $module->slug) }}" class="btn btn-default pull-left btn-sm" style="margin-right: 10px;">
+
+                                    Wyłączony
+
+                                </a>
+
+                                @endif
+
+                            @endif
+
+                        </h4>
+
+                        <div class="clearfix"></div>
+
+                    </li>
+
+                @endforeach
 
         	</ul>
 

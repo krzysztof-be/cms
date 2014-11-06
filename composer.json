@@ -7,6 +7,7 @@
 		"laravel/framework": "4.2.*",
 		"intervention/image": "2.*",
 		"laracasts/flash": "~1.0",
+		"doctrine/dbal": "~2.3",
 		"kkstudio/info": "dev-master",
 		"kkstudio/page": "dev-master",
 		"kkstudio/menu": "dev-master",

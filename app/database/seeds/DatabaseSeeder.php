@@ -23,11 +23,12 @@ class DatabaseSeeder extends Seeder {
 		\DB::table('kkstudio_users')->delete();
 		\DB::table('kkstudio_themes')->delete();
 		\DB::table('kkstudio_modules')->delete();
+		\DB::table('kkstudio_notifications')->delete();
 
 		\App\User::create([
 
-			'email' => 'user@kkstudio.eu',
-			'password' => \Hash::make('password123'),
+			'email' => 'admin@kkstudio.eu',
+			'password' => \Hash::make('kkstudio'),
 			'level' => 1337
 
 		]);
@@ -49,8 +50,8 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'Blog',
 			'icon' => 'comment',
 			'description' => '',
-			'status' => 'enabled',
-			'settings' => '{}',
+			'status' => 'disabled',
+			'settings' => '{"post-per-page":"10","last-posts-quantity":"5","disqus-app-key":""}',
 
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
@@ -105,7 +106,7 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'Portfolio',
 			'icon' => 'camera',
 			'description' => '',
-			'status' => 'enabled',
+			'status' => 'disabled',
 			'settings' => '{}',
 
 			'created_at' => \Carbon\Carbon::now(),
@@ -119,8 +120,8 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'Galerie',
 			'icon' => 'picture',
 			'description' => '',
-			'status' => 'enabled',
-			'settings' => '{}',
+			'status' => 'disabled',
+			'settings' => '{"disqus-app-key":""}',
 
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
@@ -133,8 +134,18 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'Kontakt',
 			'icon' => 'envelope',
 			'description' => '',
-			'status' => 'enabled',
-			'settings' => '{}',
+			'status' => 'disabled',
+			'settings' => '{"facebook":"","gplus":"","twitter":""}',
+
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+		\DB::table('kkstudio_settings')->insert([
+
+			'key' => 'theme',
+			'value' => 'default',
 
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()

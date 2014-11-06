@@ -64,6 +64,9 @@
                     {!! $n->message !!}
                   </a></li>
                 @endforeach
+                @if(!count($notifications))
+                <li>&nbsp;&nbsp;&nbsp;Brak powiadomień.</li>
+                @endif  
                 </ul>
               </li>
               <li>
@@ -112,6 +115,8 @@
                 </li>
 
             @foreach($modules as $module)
+
+              @if($module->status == 'enabled')
                     
                 <li class="{{ is_active('admin/' . $module->slug .'*') }}">
                     <a href="{{ url('admin/' . $module->slug ) }}" class="list-group-item">
@@ -120,11 +125,13 @@
                     </a>
                 </li>
 
+              @endif
+
             @endforeach
                     
                 <li class="list-group-item">
-                    <a href="http://shop.kkstudio.eu" target="__blank" class="btn btn-lg btn-primary">
-                       <i class="glyphicon glyphicon-shopping-cart"></i> 
+                    <a href="{{ url('admin') }}" class="btn btn-lg btn-primary">
+                        
                         {{ tr('admin.more') }}
                     </a>
                 </li>
@@ -139,6 +146,17 @@
         </div>
 
         <div class="col-sm-9 col-md-9 col-lg-10">
+
+          @if(Auth::check() && Hash::check('kkstudio', Auth::user()->password))
+
+          <div class="alert alert-warning">
+
+            Nadal używasz hasła stworzonego przy instalacji KK CMS. Jak najszybciej 
+            <b><u><a href="{{ url('admin/settings') }}">zmień hasło</a></u></b>!
+
+          </div>
+
+          @endif
 
           @include('flash::message')
 

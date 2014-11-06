@@ -69,10 +69,28 @@ Route::post('backup', [
 
 Route::post('password', [
 	'before' => 'admin',
-	'uses' => 'App\Http\Controllers\Auth\PasswordController@change'
+	'uses' => 'App\Http\Controllers\SettingsController@change'
 ]);
 
-\View::composer('admin.template', function($view)
+Route::get('admin/turnoff/{slug}', [
+	'before' => 'admin',
+	'uses' => 'App\Http\Controllers\SettingsController@turnoff'
+]);
+
+Route::get('admin/turnon/{slug}', [
+	'before' => 'admin',
+	'uses' => 'App\Http\Controllers\SettingsController@turnon'
+]);
+
+Route::get('404', function() {
+	return 'a404';
+});
+
+Route::get('500', function() {
+	return 'a500';
+});
+
+\View::composer(['admin.template', 'admin.index'], function($view)
 {
 	$repo = new \App\Http\Repositories\ModuleRepository;
 	$modules = $repo->all();
@@ -81,3 +99,20 @@ Route::post('password', [
 
     $view->with('modules', $modules)->with('notifications', $notifications);
 });
+
+App::error(function( Illuminate\Database\Eloquent\ModelNotFoundException $e)
+{
+	return Redirect::to('/');
+});
+
+App::error(function( Symfony\Component\HttpKernel\Exception\HttpException $e)
+{
+	return Redirect::to('500');
+});
+
+App::error(function( Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
+{
+	return Redirect::to('404');
+});
+
+Route::get('install', 'App\Http\Controllers\InstallController@install');

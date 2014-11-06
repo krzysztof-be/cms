@@ -47,7 +47,7 @@ function a($asset)
 }
 
 /**
- * return themed view response
+ * return view
  * @return String
  */
 

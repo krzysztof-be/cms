@@ -24,11 +24,13 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+$env = $app->detectEnvironment(function() {
 
-	'local' => array('homestead'),
+	if(!defined('APP_NAME')) return 'public';
 
-));
+	return APP_NAME;
+
+});
 
 /*
 |--------------------------------------------------------------------------

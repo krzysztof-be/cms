@@ -4,6 +4,7 @@ abstract class Module {
 
 	protected static $instances = [];
 	public $settings = [];
+	protected $enabled = 'disabled';
 
 	protected function __construct() { }
 
@@ -24,9 +25,11 @@ abstract class Module {
 
 		$module = (explode('\\', $name));
 
-		$settings = \DB::table('kkstudio_modules')->where('name', $module[3])->first();
+		$settings = \DB::table('kkstudio_modules')->where('slug', \Str::lower($module[3]))->first();
+		
 		self::$instances[$name]->settings = ($settings) ? json_decode($settings->settings, true) : [];
-
+		self::$instances[$name]->enabled = ($settings) ? $settings->status : 'disabled';
+		
 		return self::$instances[$name];
 	}
 
@@ -55,6 +58,30 @@ abstract class Module {
 
 		]);
 
+	}
+
+	public function denotify($id)
+	{
+
+		Notification::where('context', $id)->delete();
+
+	}
+
+	public static function turnoff($slug)
+	{
+		\DB::table('kkstudio_modules')->where('slug', $slug)->update([ 'status' => 'disabled']);
+		
+	}
+
+	public static function turnon($slug)
+	{
+		\DB::table('kkstudio_modules')->where('slug', $slug)->update([ 'status' => 'enabled']);
+		
+	}
+
+	public function enabled() 
+	{
+		return ($this->enabled == 'enabled');
 	}
 
 }

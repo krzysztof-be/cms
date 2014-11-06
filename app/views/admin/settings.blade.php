@@ -22,14 +22,6 @@
 		{!! Form::select('language', [ 'pl' => 'polski'], \App\Settings::value('language', 'pl'), [ 'class' => 'form-control input-lg', 'rows' => 1 ]) !!}
 
 
-
-	
-		<h3>{!! Form::label('disqus', tr('admin.disqus')) !!}</h3>
-		<p class="text-muted">{!! tr('admin.disqus_desc') !!}</p> 
-
-		{!! Form::text('disqus', \App\Settings::value('disqus', ''), [ 'class' => 'form-control input-lg', 'rows' => 1 ]) !!}
-
-
 	{!! Form::close() !!}
 
 		<br><br>

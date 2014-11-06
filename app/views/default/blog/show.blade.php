@@ -5,16 +5,16 @@
 
 	<div class="container pt">
 
-	{{ var_dump($post) }}
+	{!!$post->content!!}
 
 	</div>
 
-	@if(s('disqus', ''))
+	@if(m('Blog')->setting('disqus-app-key'))
 
 	    <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = '{{ s('disqus', '') }}'; // required: replace example with your forum shortname
+        var disqus_shortname = '{{ m('Blog')->setting('disqus-app-key') }}'; // required: replace example with your forum shortname
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {

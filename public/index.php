@@ -1,6 +1,6 @@
 <?php
 
-define('APP_NAME', 'public');
+define('APP_NAME', end(explode('/', __DIR__)));
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
