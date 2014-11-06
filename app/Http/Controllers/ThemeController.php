@@ -106,4 +106,66 @@ class ThemeController extends Controller {
 
 	}
 
+	public function install()
+	{
+		return \View::make('admin.upload');
+	}
+
+	public function postInstall()
+	{
+
+		if(!\Input::hasFile('theme'))
+		{
+			\Flash::error('Proszę wybrać plik z szablonem.');
+			return \Redirect::back();
+		}
+
+		$zipper = new \Chumper\Zipper\Zipper;
+		$file = $zipper->make(\Input::file('theme'));
+
+		$info = $file->getFileContent('theme.ini');
+
+		if($info === false)
+		{
+			\Flash::error('Archiwum nie zawiera szablonu.');
+			return \Redirect::back();			
+		}
+
+		$ini = parse_ini_string($info, false , INI_SCANNER_RAW);
+
+
+		if(isset($ini['slug']) && isset($ini['name']) && 
+			isset($ini['colors']) && isset($ini['provides']))
+
+		{
+
+			$path = public_path('themes/' . $ini['slug']);
+
+			if(\File::makeDirectory($path, 0775, true))
+			{
+
+				\App\Theme::create([
+
+					'slug' => $ini['slug'],
+					'name' => $ini['name'],
+					'image' => 'image.png',
+					'colors' => $ini['colors'],
+					'provides' => $ini['provides']
+
+				]);
+
+				$file->extractTo($path, ['theme.ini']);
+
+				\Flash::success('Pomyślnie zainstalowano szablon.');
+				return \Redirect::to('admin/themes');
+
+			}
+
+		}
+
+		\Flash::error('Archiwum nie zawiera szablonu.');
+		return \Redirect::back();	
+
+	}
+
 }

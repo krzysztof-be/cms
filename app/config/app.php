@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Chumper\Zipper\ZipperServiceProvider',
 
 		'Kkstudio\Info\InfoServiceProvider',
 		'Kkstudio\Menu\MenuServiceProvider',

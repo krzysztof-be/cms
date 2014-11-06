@@ -4,7 +4,7 @@
 
 	<h3 class="pull-left">{{ tr('admin.themes') }}</h3>
 
-	<a href="{{ url('install') }}" class="btn btn-lg pull-right btn-success">{{ tr('admin.install') }}</a>
+	<a href="{{ url('admin/install') }}" class="btn btn-lg pull-right btn-success">{{ tr('admin.install') }}</a>
 
 	<div class="clearfix"></div>
 

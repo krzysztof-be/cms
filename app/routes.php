@@ -82,6 +82,16 @@ Route::get('admin/turnon/{slug}', [
 	'uses' => 'App\Http\Controllers\SettingsController@turnon'
 ]);
 
+Route::get('admin/install', [
+	'before' => 'admin',
+	'uses' => 'App\Http\Controllers\ThemeController@install'
+]);
+
+Route::post('admin/install', [
+	'before' => 'admin',
+	'uses' => 'App\Http\Controllers\ThemeController@postInstall'
+]);
+
 Route::get('404', function() {
 	return 'a404';
 });
@@ -113,6 +123,11 @@ App::error(function( Symfony\Component\HttpKernel\Exception\HttpException $e)
 App::error(function( Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
 {
 	return Redirect::to('404');
+});
+
+App::error(function( \Exception $e)
+{
+	return Redirect::to('500');
 });
 
 

@@ -8,6 +8,7 @@
 		"intervention/image": "2.*",
 		"laracasts/flash": "~1.0",
 		"doctrine/dbal": "~2.3",
+		"Chumper/Zipper": "dev-master",
 		"kkstudio/info": "dev-master",
 		"kkstudio/page": "dev-master",
 		"kkstudio/menu": "dev-master",
