@@ -25,14 +25,6 @@ class DatabaseSeeder extends Seeder {
 		\DB::table('kkstudio_modules')->delete();
 		\DB::table('kkstudio_notifications')->delete();
 
-		\App\User::create([
-
-			'email' => 'admin@kkstudio.eu',
-			'password' => \Hash::make('kkstudio'),
-			'level' => 1337
-
-		]);
-
 		\App\Theme::create([
 
 			'slug' => 'default',
@@ -147,6 +139,61 @@ class DatabaseSeeder extends Seeder {
 			'key' => 'theme',
 			'value' => 'default',
 
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+		\DB::table('kkstudio_info_info')->insert([
+
+			'key' => 'name',
+			'value' => 'Moja nazwa',
+
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+		\DB::table('kkstudio_info_info')->insert([
+
+			'key' => 'title',
+			'value' => 'Moja strona www',
+
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+		\DB::table('kkstudio_info_info')->insert([
+
+			'key' => 'header',
+			'value' => 'Witaj wędrowcze!',
+
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+		\DB::table('kkstudio_info_info')->insert([
+
+			'key' => 'about',
+			'value' => 'Jak widać moja strona jest jeszcze w budowie, ale zapraszam później!',
+
+			'created_at' => \Carbon\Carbon::now(),
+			'updated_at' => \Carbon\Carbon::now()
+
+		]);
+
+
+		\DB::table('kkstudio_menu_menu')->insert([
+
+			'enabled' => 1,
+			'position' => 1,
+			'display_name' => 'Strona główna',
+			'slug' => 'strona-glowna',
+			'route' => '/',
+			'params' => '{}',
+			
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
 

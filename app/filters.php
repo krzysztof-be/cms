@@ -13,6 +13,15 @@
 
 App::before(function($request)
 {
+
+	if(!Request::is('install')) {
+
+		$installed = base_path(APP_NAME . '/installed');
+
+		if(!\File::exists($installed)) return \Redirect::to('install');
+		
+	}
+
 	\Route::get('{slug}', '\Kkstudio\Page\Controllers\PageController@page');
 });
 
