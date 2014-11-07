@@ -6,23 +6,33 @@
 
 	<div class=""> 
 
+		<div class="clearfix"></div>
+
+		<hr>
+
 	{!! Form::open([ 'url' => 'admin/settings' ]) !!}
 
 		{!! Form::submit(tr('admin.save'), [ 'class' => 'btn btn-lg btn-primary pull-right']) !!}
 
 
-		<div class="clearfix"></div>
-
-		<hr>
-
 	
-		<h3>{!! Form::label('language', tr('admin.language')) !!}</h3>
+		<h4>{!! Form::label('language', tr('admin.language')) !!}</h4>
 		<p class="text-muted">{{ tr('admin.language_desc') }}</p>
 
 		{!! Form::select('language', [ 'pl' => 'polski'], \App\Settings::value('language', 'pl'), [ 'class' => 'form-control input-lg', 'rows' => 1 ]) !!}
 
 
 	{!! Form::close() !!}
+
+		<br>
+
+
+	
+		<h4>{!! Form::label('email', 'Adres e-mail') !!}</h4>
+		<p class="text-muted">Podany przy rejestracji, nie można go zmienić</p>
+		
+		{!! Form::text('email', \Auth::user()->email, [ 'class' => 'form-control input-lg', 'disabled' => 'disabled' ]) !!}
+
 
 		<br><br>
 

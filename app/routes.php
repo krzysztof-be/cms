@@ -93,11 +93,11 @@ Route::post('admin/install', [
 ]);
 
 Route::get('404', function() {
-	return 'a404';
+	return v('404');
 });
 
 Route::get('500', function() {
-	return 'a500';
+	return v('500');
 });
 
 \View::composer(['admin.template', 'admin.index'], function($view)
@@ -120,16 +120,15 @@ App::error(function( Symfony\Component\HttpKernel\Exception\HttpException $e)
 	return Redirect::to('500');
 });
 
-App::error(function( Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
-{
-	return Redirect::to('404');
-});
-
 App::error(function( \Exception $e)
 {
 	return Redirect::to('500');
 });
 
+App::error(function( Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e)
+{
+	return Redirect::to('404');
+});
 
 Route::get('install', 'App\Http\Controllers\InstallController@install');
 Route::post('install', 'App\Http\Controllers\InstallController@postInstall');

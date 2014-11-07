@@ -66,7 +66,7 @@ class SettingsController extends Controller {
 
 		}
 
-		\DB::table('kkstudio_modules')->where('name', $module)->update(['settings' => json_encode($settings)]);
+		\DB::table('kkstudio_modules')->where('slug', strtolower($module))->update(['settings' => json_encode($settings)]);
 
 		\Flash::success(tr('admin.changes_has_been_saved'));
 

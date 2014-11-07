@@ -1,0 +1,11 @@
+h1, h2, h3, h4, h5, h6 {
+    color: #15ba6b
+}
+
+.navbar-default .navbar-brand {
+	color: #21cb8b;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #35d1a2;
+}
